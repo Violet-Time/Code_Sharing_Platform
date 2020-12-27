@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title th:text="${title}"></title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+<body class="bg-light">
+    <div th:insert="blocks/header :: header"></div>
+    <main>
+        <div class="container">
+            <form class="needs-validation">
+                <textarea class="form-control" id="code_snippet" rows="10"></textarea>
+                <br>
+                <span>Time restriction: </span>
+                <input id="time_restriction" type="text"/>
+                <br>
+                <span>Views restriction: </span>
+                <input id="views_restriction" type="text"/>
+                <button class="btn btn-primary btn-lg" id="send_snippet" type="submit" onclick="send()">Submit</button>
+            </form>
+        </div>
+    </main>
+    <div th:insert="blocks/footer :: footer"></div>
+    <script th:src="@{/js/SendJson.js}"></script>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>

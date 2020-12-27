@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${title}"></title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/styles/blockCode.css}">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/default.min.css">
+</head>
+<body>
+    <div th:insert="blocks/header :: header"></div>
+    <main>
+        <div class="container block" th:each="block : ${blocks}">
+            <span id="load_date" th:text="${block.getStringDate()}"/>
+            <div th:if="${!blocks.getClass().isArray() && (block.getViews() != 0 || block.getTime() != 0)}">
+                <br>
+                <span id="views_restriction" th:if="${block.getViews() > 0}" th:text="${block.getViews()}"/>
+                <span id="views_restriction" th:if="${block.getViews() < 0}" th:text="${0}"/>
+                <br>
+                <span id="time_restriction" th:if="${block.getTime() != 0}" th:text="${block.getTime()}"/>
+            </div>
+            <pre id="code_snippet" class="code" >
+                <code th:text="${block.getCode()}"/>
+            </pre>
+        </div>
+    </main>
+    <div th:insert="blocks/footer :: footer"></div>
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
